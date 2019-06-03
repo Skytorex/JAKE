@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>	</title>
+	<style type="text/css">
+		.window{
+			height: 400px;
+			width:400px;
+			
+			position: absolute;
+			top:50%;
+			transition: 1s;
+			left:40%;
+		}
+	</style>
+	<style type="text/css">
+		.windows{
+			height: 400px;
+			width:400px;
+			
+			position: absolute;
+			top:50%;
+			transition: 1s;
+			left:40%;
+		}
+	</style>
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<div class="game">
+		<h1 class="text-center">POINTS</h1>
+		<h1 class="points text-center">0</h1>
+		
+
+		<div class="container">
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake w-75" src="jake.png" alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png" alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+				<div class="col-3 border" style="height: 300px; background: #fbbb11">
+					<img class="jake" src="jake.png"  alt="" style="display: none">
+					<img class="king w-75" src="Ice_King.png" alt="" style="display: none">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="window container bg-danger" style="height: 200px; width: 300px; display: none">
+		<h2 class="text-center pt-5">you lose</h2>
+	</div>
+	<div class="windows container bg-danger" style="height: 200px; width: 300px; display: none">
+		<h2 class="text-center pt-5">you win</h2>
+	</div>
+		
+
+	<script>
+		let jakes = document.querySelectorAll(".jake")
+		let kings = document.querySelectorAll(".king")
+		let points = 0
+		let interv = function(){
+			let rand = Math.random()*8
+			let round = Math.round(rand)
+			jakes[round].style.display = "block"
+			jakes[round].onclick = function(){
+				jakes[round].style.display = "block"
+				document.querySelector(".points").innerHTML = points
+				points = points + 1
+			}
+			let dis = function(){
+				jakes[round].style.display = "none"
+			}
+			setTimeout(dis,1000)
+		}
+		setInterval(interv,1000)
+		let intervs = function(){
+			let rands = Math.random()*8
+			let rounds = Math.round(rands)
+			kings[rounds].style.display = "block"
+			kings[rounds].onclick = function(){
+				kings[rounds].style.display = "block"
+				document.querySelector(".points").innerHTML = points
+				points = points - 10
+			}
+			let diss = function(){
+				kings[rounds].style.display = "none"
+			}
+			setTimeout(diss,1000)
+		}
+		setInterval(intervs,1000)
+		let konec = setInterval(interv,1000)
+		let konecs = setInterval(intervs,1000)
+		let timer = function(){
+			if ( points > 2 ) {
+				clearInterval(konec)
+				clearInterval(konecs)
+				document.querySelector(".windows").style.display = "block"
+			} 
+			else
+				clearInterval(konec)
+				clearInterval(konecs)
+				document.querySelector(".window").style.display = "block"
+		} 
+		setTimeout(timer,5000)
+	</script>
+</body>
+</html>
